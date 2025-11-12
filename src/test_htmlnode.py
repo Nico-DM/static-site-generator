@@ -19,7 +19,7 @@ class TestHTMLNode(unittest.TestCase):
 
     def test_repr(self):
         node = HTMLNode(None, "Sample text", None, None)
-        expected_repr = "HTMLNode(None, Sample text, [], {})"
+        expected_repr = "HTMLNode(None, Sample text, None, None)"
         self.assertEqual(repr(node), expected_repr)
 
 
