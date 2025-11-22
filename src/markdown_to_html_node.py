@@ -1,9 +1,9 @@
-from src.block_to_blocktype import block_to_blocktype, BlockType
-from src.markdown_to_blocks import markdown_to_blocks
-from src.parentnode import ParentNode
-from src.text_to_html import text_node_to_html_node
-from src.text_to_textnodes import text_to_textnodes
-from src.textnode import TextNode, TextType
+from block_to_blocktype import block_to_blocktype, BlockType
+from markdown_to_blocks import markdown_to_blocks
+from parentnode import ParentNode
+from text_to_html import text_node_to_html_node
+from text_to_textnodes import text_to_textnodes
+from textnode import TextNode, TextType
 
 
 def blocktype_to_html_node(block, block_type):
@@ -18,7 +18,7 @@ def blocktype_to_html_node(block, block_type):
         case BlockType.QUOTE:
             new_text = ""
             for line in block.splitlines():
-                new_text += line[1:] + "\n"
+                new_text += line[2:] + "\n"
             new_text = new_text.rstrip("\n")
             return ParentNode("blockquote", text_to_children(new_text))
         case BlockType.UNORDERED_LIST:
