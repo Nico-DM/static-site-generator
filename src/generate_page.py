@@ -12,7 +12,9 @@ def extract_title(markdown):
     raise ValueError("No title found in the markdown content.")
 
 def generate_page(from_path, template_path, dest_path):
-    print(f"Generating page from {from_path} to {dest_path} using {template_path}")
+    print(f"Generating page (using {template_path}):")
+    print(f"\t{from_path}")
+    print(f"\t{dest_path}")
 
     with open(from_path, "r") as f:
         content = f.read()
@@ -30,3 +32,13 @@ def generate_page(from_path, template_path, dest_path):
 
     with open(dest_path, "w") as f:
         f.write(page)
+
+def generate_pages_recursive(content_dir, template_file, public_dir):
+    for entry in os.listdir(content_dir):
+        from_path = os.path.join(content_dir, entry)
+        dest_path = os.path.join(public_dir, entry)
+
+        if os.path.isfile(from_path):
+            generate_page(from_path, template_file, dest_path.rstrip(".md") + ".html")
+        else:
+            generate_pages_recursive(from_path, template_file, dest_path)
